@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/services/all_categories.dart';
-
-import 'package:store_app/services/get_category_service.dart';
 
 void main() {
-  GetAllCategories().getAllCategories();
   runApp(const MyApp());
 }
 

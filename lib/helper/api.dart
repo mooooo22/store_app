@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 
 class Api {
-  Future<Response> get(String url) async {
+  Future<dynamic> get(String url) async {
     final Dio dio = Dio();
     try {
       Response response = await dio.get(url);
 
-      return response;
+      return response.data;
     } on DioException catch (e) {
       
 

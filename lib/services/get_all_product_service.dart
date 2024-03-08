@@ -5,14 +5,13 @@ import 'package:store_app/models/product_model.dart';
 
 class GetAllProduct {
   final Dio dio = Dio();
-  
+
   Future<List<ProductModel>> getAllProduct() async {
-    Api api = Api();
-    Response response = await api.get('$baseUrl/products');
     List<ProductModel> products = [];
-    response.data.forEach((product) {
+    List<dynamic> data = await Api().get('$baseUrl/products');
+    for (var product in data) {
       products.add(ProductModel.fromJson(product));
-    });
+    }
 
     return products;
   }
