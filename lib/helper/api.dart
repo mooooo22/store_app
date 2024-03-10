@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 class Api {
@@ -8,10 +10,34 @@ class Api {
 
       return response.data;
     } on DioException catch (e) {
-      
-
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception('Something went wrong');
+    }
+  }
 
+  Future<dynamic> post(
+      {required String url, dynamic body, String? token}) async {
+    final Dio dio = Dio();
+
+    final Map<String, String> headers = {};
+
+    if (token != null) {
+      headers['Authorization'] = 'Bearer $token';
+    }
+    dio.options.headers = headers;
+    try {
+      Response response = await dio.post(
+        url,
+        data: body,
+      );
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw Exception(jsonDecode(response.data));
+      }
+    } on DioException catch (e) {
+      throw Exception(e.message);
     } catch (e) {
       throw Exception('Something went wrong');
     }
