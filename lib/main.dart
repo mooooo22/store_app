@@ -1,9 +1,4 @@
-import 'dart:developer';
-import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
-
 import 'package:flutter/material.dart';
-import 'package:store_app/helper/api.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,9 +19,7 @@ class MyApp extends StatelessWidget {
           child: Text('Hello, World!'),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-           
-          },
+          onPressed: () async {},
           child: const Icon(Icons.add),
         ),
       ),
