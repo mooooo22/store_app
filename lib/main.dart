@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/screens/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const StoreApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class StoreApp extends StatelessWidget {
+  const StoreApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Floating Button Example'),
-          backgroundColor: Colors.blue,
-        ),
-        body: const Center(
-          child: Text('Hello, World!'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {},
-          child: const Icon(Icons.add),
-        ),
-      ),
+      initialRoute: HomeScreen.id  ,
+      routes: {
+        // Add routes here
+      },
+      home: HomeScreen() ,
+
     );
   }
 }
