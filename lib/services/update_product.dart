@@ -23,4 +23,3 @@ class UpdateProductService {
     return ProductModel.fromJson(data);
   }
 }
-

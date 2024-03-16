@@ -14,7 +14,8 @@ class CustomProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Add functionality here
-        Navigator.pushNamed(context, UpdateProductScreen.id);
+        Navigator.pushNamed(context, UpdateProductScreen.id,
+            arguments: productModel);
       },
       child: Stack(
         clipBehavior: Clip.none,

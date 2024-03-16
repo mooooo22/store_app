@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/models/product_model.dart';
+import 'package:store_app/services/update_product.dart';
 import 'package:store_app/widgets/custom_text_field.dart';
 
 class UpdateProductScreen extends StatefulWidget {
@@ -19,6 +20,8 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Extract the product model from the arguments
+    final product = ModalRoute.of(context)!.settings.arguments as ProductModel;
     return GestureDetector(
       onTap: () {
         // Dismiss the keyboard when the user taps on the screen
@@ -29,62 +32,74 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
           title: const Text('Update Product'),
           centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            // Implement your form fields here
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Add your form fields here
-                CustomTextField(
-                  label: 'Product Name',
-                  onChanged: (value) {
-                    // Implement the onChanged callback here
-                    _productName = value;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextField(
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  label: 'price',
-                  onChanged: (value) {
-                    // Implement the onChanged callback here
-                    _productPrice = value;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextField(
-                  label: ' Product Description',
-                  onChanged: (value) {
-                    // Implement the onChanged callback here
-                    _productDescription = value;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextField(
-                  label: 'image URL',
-                  onChanged: (value) {
-                    // Implement the onChanged callback here
-                    _productImageURL = value;
-                  },
-                ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              // Implement your form fields here
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  // Add your form fields here
+                  CustomTextField(
+                    label: 'Product Name',
+                    onChanged: (value) {
+                      // Implement the onChanged callback here
+                      _productName = value;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextField(
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    label: 'price',
+                    onChanged: (value) {
+                      // Implement the onChanged callback here
+                      _productPrice = value;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextField(
+                    label: ' Product Description',
+                    onChanged: (value) {
+                      // Implement the onChanged callback here
+                      _productDescription = value;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextField(
+                    label: 'image URL',
+                    onChanged: (value) {
+                      // Implement the onChanged callback here
+                      _productImageURL = value;
+                    },
+                  ),
 
-                // Example: TextFormField, DropdownButtonFormField, etc.
-              ],
+                  // Example: TextFormField, DropdownButtonFormField, etc.
+                ],
+              ),
             ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // Implement your update logic here
+            UpdateProductService().updateProduct(
+              productId: product.id,
+              title: _productName,
+              price: _productPrice,
+              description: _productDescription,
+              category: product.category,
+              image: _productImageURL,
+            );
           },
           child: const Icon(Icons.save),
         ),
