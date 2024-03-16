@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:store_app/constants.dart';
 import 'package:store_app/helper/api.dart';
 import 'package:store_app/models/product_model.dart';
@@ -6,7 +8,7 @@ class UpdateProductService {
   // Method to update a product
 
   Future<ProductModel> updateProduct({
-    required String productId,
+    required int productId,
     required String title,
     required String price,
     required String description,

@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
           left: 16,
         ),
         child: FutureBuilder<List<ProductModel>>(
-            future: GetAllProduct().getAllProduct(),
+            future: GetAllProductService().getAllProduct(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List<ProductModel> products = snapshot.data!;

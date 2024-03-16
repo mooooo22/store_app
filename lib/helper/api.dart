@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
@@ -49,7 +50,7 @@ class Api {
 
     final Map<String, String> headers = {};
     headers.addAll({
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json', // Change content type to JSON
     });
     if (token != null) {
       headers['Authorization'] = 'Bearer $token';
@@ -58,17 +59,20 @@ class Api {
     try {
       Response response = await dio.put(
         url,
-        data: body,
+        data: body is Map<String, dynamic>
+            ? jsonEncode(body)
+            : body, // Convert body to JSON if it's a Map
       );
       if (response.statusCode == 200) {
+        log(response.data.toString());
         return response.data;
       } else {
-        throw Exception(jsonDecode(response.data));
+        throw Exception(response.data);
       }
     } on DioException catch (e) {
       throw Exception(e.message);
     } catch (e) {
-      throw Exception('Something went wrong');
+      throw Exception(e.toString());
     }
   }
 }
