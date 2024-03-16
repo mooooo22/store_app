@@ -37,6 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.6
   dio: ^5.4.1
   http: ^1.2.1
+  awesome_icons: ^1.1.0
+  font_awesome_icon_class: ^0.0.6
+  font_awesome_flutter: ^10.7.0
+  font_awesome_pro_flutter: ^0.0.3
 
 dev_dependencies:
   flutter_test:
