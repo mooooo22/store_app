@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -47,6 +46,9 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                 child: Column(
                   children: [
                     Image.network(product.image, height: 200, width: 200),
+                    const SizedBox(
+                      height: 10,
+                    ),
 
                     // Add your form fields here
                     CustomTextField(

@@ -12,7 +12,9 @@ class GetAllProductService {
     for (var product in data) {
       products.add(ProductModel.fromJson(product));
     }
-
+    for (var product in products) {
+      log(product.rating.rate.toString());
+    }
     return products;
   }
 }

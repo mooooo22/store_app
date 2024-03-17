@@ -57,12 +57,9 @@ class Api {
     }
     dio.options.headers = headers;
     try {
-      Response response = await dio.put(
-        url,
-        data: body is Map<String, dynamic>
-            ? jsonEncode(body)
-            : body, // Convert body to JSON if it's a Map
-      );
+      Response response = await dio.put(url, data: jsonEncode(body)
+          // Convert body to JSON if it's a Map
+          );
       if (response.statusCode == 200) {
         log(response.data.toString());
         return response.data;
